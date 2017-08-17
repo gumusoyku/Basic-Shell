@@ -66,15 +66,14 @@ void builtin_clr() {
 
 void addNode (char **arg, Commands **head) {
 
-    // önceki vagonla bi öncekini birleştir, aynı zamanda yeni koyduğun vagonun içini doldur
-    // create new vagon, yeni args
+    // create new vagon, new args
     Commands *newCommand = (Commands *)malloc(sizeof(Commands));
 
     if (newCommand == NULL) {
  		fprintf(stderr, "malloc failed\n" );
  		
  	}
-    // yeni oluşan args'ın size'ını bulalım
+    // find size of the newly created args
     int size = 0;
     while (arg[size] != NULL) {
     	size++;
@@ -143,7 +142,6 @@ void retrieveCom () {
 			break;
 		}
 	}
-
 }
 
 
@@ -201,7 +199,6 @@ void builtin_hist (char **args) {
 }
 
 
-
 void builtin_exit() {
 
 	int i, answer, exist;
@@ -244,7 +241,4 @@ void addBackground(pid_t pid){		//adding new background process node
 			break; 
 		}
 	}
-
 }
-
-
