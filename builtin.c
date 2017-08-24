@@ -41,11 +41,9 @@ void builtin_cd (char *direc) {
 		check = chdir (direc);
 	}
 	
-
 	if (check == -1) {
 		fprintf(stderr, "cd: %s: No such file or directory \n", direc);
 	}
-
 }
 	
 
@@ -88,8 +86,7 @@ void addNode (char **arg, Commands **head) {
     } 
 
     if(*head == NULL){
-        *head = newCommand;
-        //printf("added at beginning\n");
+        *head = newCommand; // added at beginning
     }
 
     else
@@ -108,10 +105,8 @@ void addNode (char **arg, Commands **head) {
             current = current->nextptr;
         }
     }
-
     tail = newCommand;
 }
-
 
 
 void keepCom(char **args) {
@@ -122,7 +117,7 @@ void keepCom(char **args) {
 
 void retrieveCom () {
 	int i;
-	//int j = 0;
+	
 	int k = 0;
 	Commands *tcopy = tail;
 
@@ -134,10 +129,8 @@ void retrieveCom () {
 				fprintf(stderr, "%s ", tcopy->args[j]);
 				j++;
 			}
-
 			tcopy = tcopy->preptr;
 			fprintf(stderr, "\n" );
-
 		} else {
 			break;
 		}
@@ -157,7 +150,6 @@ Commands* retComInt(int n) {
 		for (i = 0; i<n && tcopy->preptr != NULL ; i++) {
 			tcopy = tcopy->preptr;
 		}
-
 		return tcopy;
 	}
 }
@@ -174,7 +166,6 @@ Commands* retComSt(char *string) {
 			return tcopy;
 		}
 	}
-
 	return NULL ;
 }
 
@@ -190,8 +181,7 @@ void builtin_hist (char **args) {
 				fprintf(stderr, "Please enter a value grater than 0\n");
 			} else {
 				comNumber = num;
-			}
-			
+			}	
 		}
 	} else if (args[1] == NULL){
 		retrieveCom(); // get the commands
@@ -213,7 +203,6 @@ void builtin_exit() {
 		}
 	}
 	exit(0);
-
 }
 
 void builtin_wait() {
@@ -233,7 +222,6 @@ void builtin_wait() {
 
 void addBackground(pid_t pid){		//adding new background process node
 	
-
 	int i;
 	for (i = 0; i<BACKSIZE; i++) {
 		if (backPr [i] == 0) {
