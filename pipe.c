@@ -60,7 +60,7 @@ void multiPipe() {
 
 
 		if (childpid == 0 ) {
-        // calculate the necessary pipe orders 
+        	// calculate the necessary pipe orders 
 			f0 = 2 * (i -1);
 			f1 = 1 + (2*i);
 			if(i != 0) {
@@ -82,7 +82,7 @@ void multiPipe() {
 		} else {
 			f0 = (i -1) * 2;
 			f1 = (2*i) + 1;
-            // close an pipe that we dont use
+            // close a pipe that we dont use
 			if(i != 0) {
 				close(fd[f0]);
 			}
@@ -92,11 +92,8 @@ void multiPipe() {
 			
 			// wait for current process to terminate
 			waitpid(childpid, &rtVal, 0);
-			
 		}
-		
 	}
-
 }
 
 Commands* retrievePipeCommands() {
@@ -117,13 +114,13 @@ void addPipe(char **args, Commands** head) {
  		fprintf(stderr, "malloc failed\n" );
  		
  	}
-    // yeni oluşan args'ın size'ını bulalım
+    // find the size of the newly created args
     int size = 0;
-   // fprintf(stderr, "before while \n" );
+   
     while (args[size] != NULL && strcmp(args[size], "|") != 0) {
     	size++;
     }
-    //fprintf(stderr, "after while \n" );
+    
     newCommand->args = (char **)malloc(sizeof(char*)*(size +1));
     newCommand->args[size] = NULL;
     int i;
@@ -134,7 +131,6 @@ void addPipe(char **args, Commands** head) {
 
     if(*head == NULL){
         *head = newCommand;
-        //printf("added at beginning\n");
     }
 
     else
@@ -147,12 +143,10 @@ void addPipe(char **args, Commands** head) {
             {
                 current->nextptr = newCommand;
                 newCommand->preptr = current;
-               // printf("added later\n");
                 break; 
             }
             current = current->nextptr;
         }
     }
-
     //tail = newCommand;
 }
